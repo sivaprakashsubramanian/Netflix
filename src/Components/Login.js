@@ -1,35 +1,65 @@
 import React, { useState } from "react";
 import Header from "./Header";
+import { logo_bg } from "../Assets/images/images";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
-  const [userDetail,setUserDatail]=useState({
-    name:'',
-    mob_no:'',
-    email:'',
-    password:''
-  })
-  const handleChange=(e)=>{
-    const{name,value}=e.target.value;
-    setUserDatail(data=>({
-      ...data,
-      [name]:value
-    }))
-  }
-  const toggleSignIn = () => {
-    setIsSignIn(!isSignIn);
-    
-  };
+ 
+
+ 
+
+  
+  // it is first used method
+  // const formik = useFormik({
+  //   initialValues: { email: "",firstName:"",secondName:"" },
+  //   validationSchema: Yup.object({
+  //     firstName: Yup.string()
+  //       .max(15, 'Must be 15 characters or less')
+  //       .required('Required'),
+  //     secondName: Yup.string()
+  //       .max(20, 'Must be 20 characters or less')
+  //       .required('Required'),
+  //     email: Yup.string().email('Invalid email address').required('Required'),
+  //   }),
+  //   onSubmit: values => {
+  //     // console.log(values,"gi")
+  //     alert(JSON.stringify(values, null, 2));
+  //   }
+  // });
+  // it is component based 
+  // const formik = useFormik({
+  //   initialValues: {
+  //     firstName: '',
+  //     lastName: '',
+  //     email: '',
+  //   },
+  //   validationSchema: Yup.object({
+  //     firstName: Yup.string()
+  //       .max(15, 'Must be 15 characters or less')
+  //       .required('Required'),
+  //     lastName: Yup.string()
+  //       .max(20, 'Must be 20 characters or less')
+  //       .required('Required'),
+  //     email: Yup.string().email('Invalid email address').required('Required'),
+  //   }),
+  //   onSubmit: values => {
+  //     alert(JSON.stringify(values, null, 2));
+  //   },
+  // });
+  
+
   return (
     <div>
       <Header />
       <div>
         <img
           className="absolute"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/0552717c-9d8c-47bd-9640-4f4efa2de663/537e2c5e-c750-4d4c-9f7a-e66fe93eb977/IN-en-20240701-POP_SIGNUP_TWO_WEEKS-perspective_WEB_b00eeb83-a7e8-4b5b-8ff7-86ed92c51caf_large.jpg"
+          src={logo_bg}
           alt="img"
         />
-        <form className="bg-black absolute w-3/12 p-10 my-36 mx-auto left-0 right-0 text-white">
+        {/* <form onSubmit={(e)=>e.preventDefault()}  className="bg-black absolute w-3/12 p-10 my-36 mx-auto left-0 right-0 text-white">
           <h1 className="font-bold text-3xl my-4">
             {isSignIn ? "Sign In" : "Sign Up"}
           </h1>
@@ -37,46 +67,96 @@ const Login = () => {
             <div>
             
               <input
+              
                 type="text"
-                name="name"
-                value={userDetail.name}
+                // name="name"
+                // value={userDetail.name}
                 placeholder="Enter your Name"
                 className=" p-2 my-4 rounded w-[100%] bg-gray-800"
-                onChange={handleChange}
+                // onChange={handleChange}
               />
                 <input
                 type="text"
                 name="mob_no"
-                value={userDetail.mob_no}
+                // value={userDetail.mob_no}
                 placeholder="Enter your Mobile No"
                 className=" p-2 my-4 rounded w-[100%] bg-gray-800"
-                onChange={handleChange}
+                // onChange={handleChange}
               />
             </div>
           )}
           <input
             type="text"
-            name="email"
+            ref={email}
+            // name="email"
             placeholder="Enter your Email"
-            value={userDetail.email}
+            // value={userDetail.email}
             className=" p-2 my-4 rounded w-[100%] bg-gray-800"
-            onChange={handleChange}
+            // onChange={handleChange}
           />
           <input
             type="text"
-            name="password"
+            ref={password}
+            // name="password"
             placeholder="Enter your Password"
-            value={userDetail.password}
+            // value={userDetail.password}
             className=" p-2 my-4 rounded w-[100%] bg-gray-800"
-            onChange={handleChange}
+            // onChange={handleChange}
           />
-          <button className=" bg-red-400 rounded w-[100%] p-2 my-4">
+          <p>{errMsg}</p>
+          <button className=" bg-red-400 rounded w-[100%] p-2 my-4" onClick={handleSubmit} >
           {isSignIn ? "Sign In" : "Sign Up"}
           </button>
           <p className=" cursor-pointer" onClick={toggleSignIn}>
             { isSignIn?"New to Netflix? Sign Up":"Already Register?Sign in"}
           </p>
-        </form>
+        </form> */}
+        {/* Formik */}
+       
+    {isSignIn?<SignIn isSignIn={isSignIn} setIsSignIn={setIsSignIn}/>:<SignUp isSignIn={isSignIn} setIsSignIn={setIsSignIn}/>}
+    
+       
+  
+    {/* <form onSubmit={formik.handleSubmit} className="bg-black absolute w-3/12 p-10 my-36 mx-auto left-0 right-0 text-white">
+      <label htmlFor="email">Email Address</label>
+      <input
+        id="email"
+        type="email"
+        // onChange={formik.handleChange}
+        // onBlur={formik.handleBlur}
+        // value={formik.values.email}
+        {...formik.getFieldProps('email')}
+         className=" p-2 my-4 rounded w-[100%] bg-gray-800"
+      />
+      {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
+      <label htmlFor="firstName">First Name</label>
+        <input
+        id="firstName"
+        // name="firstName"
+        type="text"
+        // onChange={formik.handleChange}
+        // onBlur={formik.handleBlur}
+        // value={formik.values.firstName}
+        {...formik.getFieldProps('firstName')}
+         className=" p-2 my-4 rounded w-[100%] bg-gray-800"
+      />
+      {formik.touched.firstName && formik.errors.firstName ? <div>{formik.errors.firstName}</div> : null}
+      <label htmlFor="secondName">Second Name</label>
+        <input
+        id="secondName"
+        // name="secondName"
+        type="text"
+        // onChange={formik.handleChange}
+        // onBlur={formik.handleBlur}
+        // value={formik.values.secondName}
+        {...formik.getFieldProps('secondName')}
+         className=" p-2 my-4 rounded w-[100%] bg-gray-800"
+      />
+      {formik.touched.firstName && formik.errors.secondName ? <div>{formik.errors.secondName}</div> : null}
+      <button type="submit">Submit</button>
+    </form> */}
+
+  
 
         {/* <div className=" relative w-3/4  h-[50%] mx-auto my-auto sm:my-auto  md:w-1/2  lg:w-2/6  bg-black text-white ">
         <div className="flex-col p-[10%]  justify-center items-center">
@@ -92,6 +172,32 @@ const Login = () => {
         </div>
         
       </div> */}
+       {/* <form onSubmit={formik.handleSubmit} >
+       <label htmlFor="firstName">First Name</label>
+       <input
+         id="firstName"
+         type="text"
+        
+         {...formik.getFieldProps('firstName')}
+       />
+       {formik.touched.firstName && formik.errors.firstName ? (
+         <div>{formik.errors.firstName}</div>
+       ) : null}
+ 
+       <label htmlFor="lastName">Last Name</label>
+       <input id="lastName" type="text" {...formik.getFieldProps('lastName')} />
+       {formik.touched.lastName && formik.errors.lastName ? (
+         <div>{formik.errors.lastName}</div>
+       ) : null}
+ 
+       <label htmlFor="email">Email Address</label>
+       <input id="email" type="email" {...formik.getFieldProps('email')} />
+       {formik.touched.email && formik.errors.email ? (
+         <div>{formik.errors.email}</div>
+       ) : null}
+ 
+       <button type="submit">Submit</button>
+     </form> */}
       </div>
     </div>
   );
