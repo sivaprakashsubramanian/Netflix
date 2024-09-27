@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
 import { MOVIE_OPTIONS } from "../utils/constant";
-const useFetch=(props)=>{
-    console.log(props,"abi")
+import { useDispatch } from "react-redux";
+import { addNowPlayingMovies, addNowPlayingTrailer } from "../utils/movieSlice";
+const useFetch=({NOW_PLAYING_API,url})=>{
+    // console.log(props,"abi")
+    const dispatch=useDispatch();
 
  const now_playing = async ()=>{
-    console.log(props,"siva");
-    const data=await fetch(props,MOVIE_OPTIONS);
+    console.log(NOW_PLAYING_API,"siva");
+    const data=await fetch(NOW_PLAYING_API?NOW_PLAYING_API:url,MOVIE_OPTIONS);
     const JsonData=await data.json();
-    return JsonData;
+    NOW_PLAYING_API?dispatch(addNowPlayingMovies(JsonData.results)):dispatch(addNowPlayingTrailer(JsonData));
+    
   }
   useEffect(()=>{
     now_playing();

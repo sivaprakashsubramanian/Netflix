@@ -47,7 +47,7 @@ signOut(auth1).then(() => {
   },[])
   return (
     <div className="absolute bg-gradient-to-b from-black z-10 w-full flex justify-between ">
-      <img  className="w-44" src={logo} alt='logo'/>
+      <img  className="w-28 sm:w-44 " src={logo} alt='logo'/>
       {selector.length>0 && <div className='flex items-center p-6 gap-2 '>
       <div className='w-10 h-10 bg-violet-500 rounded-3xl flex justify-center items-center'>
         <p className='font-semibold text-white text-xl'>{selector[0]?.email.charAt(0).toUpperCase()}</p>
