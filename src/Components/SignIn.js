@@ -42,7 +42,7 @@ const SignIn = ({isSignIn,setIsSignIn}) => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    console.log(user);
+    // console.log(user);
     // console.log(user,"sivabinaya");
     // ...
   })

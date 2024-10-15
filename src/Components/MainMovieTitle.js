@@ -1,7 +1,7 @@
 import React from 'react'
 
 const MainMovieTitle = ({title,overview}) => {
-    console.log("title");
+    // console.log("title");
   return (
     <div className='absolute w-screen aspect-video pt-[60%] px-2 md:pt-[20%] md:px-10 lg:12 bg-gradient-to-r from-black  text-white'>
         <h2 className='text-2xl md:text-6xl font-semibold '>{title}</h2>

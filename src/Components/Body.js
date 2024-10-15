@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Login from './Login'
 import Browser from './Browser'
 import Header from './Header'
 import Routerror from './Routerror'
-import { createBrowserRouter,RouterProvider, useNavigate } from 'react-router-dom';
-import {auth} from "../utils/firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch } from 'react-redux'
-import { addUser, removeUser } from '../utils/slice'
+import { createBrowserRouter,RouterProvider} from 'react-router-dom';
+import SearchedMovie from './SearchedMovie'
 
 
 const Body = () => {
@@ -30,6 +27,10 @@ const Body = () => {
             path:'/browser',
             element:<Browser/>
         
+        },
+        {
+            path:'/searchedMovie/:id',
+            element:<SearchedMovie/>
         }
         
     ]);
